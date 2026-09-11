@@ -85,3 +85,48 @@ document.querySelectorAll('.faq-question').forEach(button => {
         faqItem.classList.toggle('active');
     });
 });
+// Railway Backend API Integration
+const shortenBtn = document.getElementById('shorten-btn');
+const longUrlInput = document.getElementById('long-url-input');
+const resultBox = document.getElementById('result-box');
+
+// Yahan Apna Railway Domain Paste Karein
+const RAILWAY_URL = "tinybackend-production-fe37.up.railway.app"; 
+
+if (shortenBtn) {
+    shortenBtn.addEventListener('click', async (e) => {
+        e.preventDefault();
+        
+        const originalUrl = longUrlInput.value.trim();
+
+        if (!originalUrl) {
+            alert("Pehle URL paste karein!");
+            return;
+        }
+
+        resultBox.innerText = "Shortening link...";
+
+        try {
+            const response = await fetch(`${RAILWAY_URL}/urls`, { // Apne backend route ke hisab se path set karein (/urls ya /short)
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ url: originalUrl })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                // Short URL screen par dikhane ke liye
+                const shortUrl = `${RAILWAY_URL}/${data.shortId || data.shortUrl}`;
+                resultBox.innerHTML = `Short Link: <a href="${shortUrl}" target="_blank" style="color: #007bff;">${shortUrl}</a>`;
+            } else {
+                resultBox.innerText = data.message || "Link shorten nahi ho saka!";
+            }
+        } catch (err) {
+            console.error(err);
+            resultBox.innerText = "Backend se connection fail ho gaya!";
+        }
+    });
+}

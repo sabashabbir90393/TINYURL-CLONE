@@ -19,34 +19,28 @@
 
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script> <!-- defer mtlb js file ko late load karna -->
-    <!-- <link rel ="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> -->
   </head>
 
   <body> 
     <header class="header"> <!-- class header css sa styling ke liye -->
       <!-- header left section -->
-  <div class="header-left">
-   <div class="logo">TINYURL</div>
-  <nav class="nav-left"> 
-  <a href="https://www.microsoft.com" target="_blank" rel="noopener noreferrer">Plans</a>
-      
-<!-- "noopener"security ke liye new tab ko tumhari website control ni karnay deta -->
- <!-- noreferrer new website ko tumhari website ka address nahi btata  -->
-      
-      <a href="https://www.google.com" target="_blank" rel="noopener noreferrer">Features</a>
-      
-      <a href="https://www.amazon.com" target="_blank" rel="noopener noreferrer">Domains</a>
-      
-      <a href="https://www.pinterest.com" target="_blank" rel="noopener noreferrer">Resources</a>
-    </nav>
-  </div>
-<!-- header right section -->
-  <div class="header-right">
-    <a href="#">Log In</a>
-    <button class="signup">Sign Up</button>
-  </div>
-</header>
-<!-- HERO SECTION -->
+      <div class="header-left">
+        <div class="logo">TINYURL</div>
+        <nav class="nav-left"> 
+          <a href="https://www.microsoft.com" target="_blank" rel="noopener noreferrer">Plans</a>
+          <a href="https://www.google.com" target="_blank" rel="noopener noreferrer">Features</a>
+          <a href="https://www.amazon.com" target="_blank" rel="noopener noreferrer">Domains</a>
+          <a href="https://www.pinterest.com" target="_blank" rel="noopener noreferrer">Resources</a>
+        </nav>
+      </div>
+      <!-- header right section -->
+      <div class="header-right">
+        <a href="#">Log In</a>
+        <button class="signup">Sign Up</button>
+      </div>
+    </header>
+
+    <!-- HERO SECTION -->
     <section class="hero">
       <!-- LEFT -->
       <div class="left">
@@ -69,7 +63,6 @@
           <button class="primary">Create Free Account</button>
         </div>
 
-        <!-- yahan sa -->
         <div class="recent-links-section">
           <h3>Your Recent Links:</h3>
           <div class="recent-links-box">
@@ -78,7 +71,6 @@
           </div>
         </div>
       </div>
-   
 
       <!-- RIGHT -->
       <div class="right">
@@ -90,7 +82,6 @@
               Shorten a Link
             </div>
 
-            <!-- QR ICON CHANGED TO 4 DOTS -->
             <div class="tab qr">
               <i class="fa-solid fa-qrcode"></i>
               Generate QR Code
@@ -103,7 +94,7 @@
 
             <div class="input-icon">
               <i class="fa-regular fa-paper-plane"></i>
-              <input type="text" placeholder="Paste long URL here" />
+              <input type="text" id="long-url-input" placeholder="Paste long URL here" />
             </div>
 
             <!-- DOMAIN + ALIAS -->
@@ -134,7 +125,10 @@
               </div>
             </div>
 
-            <button class="btn">Shorten Link</button>
+            <button class="btn" id="shorten-btn">Shorten Link</button>
+
+            <!-- Shortened URL Result Container -->
+            <div id="result-box" style="margin-top: 15px; text-align: center; font-weight: bold; color: #007bff; word-break: break-all;"></div>
 
             <p class="footer">
               By clicking <strong>Shorten Link</strong>, you agree with our
@@ -146,7 +140,7 @@
       </div>
     </section>
 
-    <!-- yahan se ha flex add -->
+    <!-- PLANS SECTION -->
     <section class="plans-include">
       <div class="plans-container">
         <h2 class="plans-title">TinyURL Plans Include:</h2>
@@ -235,55 +229,56 @@
       </div>
     </section>
 
-<section class="dynamic-features">
-  <div class="features-wrapper">
-    <div class="features-flex">
-      
-      <div class="side-group">
-        <div class="point-box active-feature" data-index="0">
-          <h3>Unlimited Tracked Clicks</h3>
-          <p>We don't believe in making you suffer for your success: track as many clicks as you earn!</p>
-        </div>
-        <div class="point-box" data-index="1">
-          <h3>Detailed Link Analytics</h3>
-          <p>Get actionable, detailed insights into your social media, emails, and ads performance.</p>
-        </div>
-        <div class="point-box" data-index="2">
-          <h3>Branded Domains</h3>
-          <p>Links shortened using your own custom domain are more professional and trustworthy.</p>
+    <section class="dynamic-features">
+      <div class="features-wrapper">
+        <div class="features-flex">
+          
+          <div class="side-group">
+            <div class="point-box active-feature" data-index="0">
+              <h3>Unlimited Tracked Clicks</h3>
+              <p>We don't believe in making you suffer for your success: track as many clicks as you earn!</p>
+            </div>
+            <div class="point-box" data-index="1">
+              <h3>Detailed Link Analytics</h3>
+              <p>Get actionable, detailed insights into your social media, emails, and ads performance.</p>
+            </div>
+            <div class="point-box" data-index="2">
+              <h3>Branded Domains</h3>
+              <p>Links shortened using your own custom domain are more professional and trustworthy.</p>
+            </div>
+          </div>
+
+          <div class="center-graphic-col">
+            <div class="mockup-container">
+              <img src="card-feature-0.png" class="mockup-img active" alt="Analytics">
+              <img src="card-feature-1.png" class="mockup-img" alt="Charts">
+              <img src="card-feature-2.png" class="mockup-img" alt="Branding">
+              <img src="card-feature-3.png" class="mockup-img" alt="Custom">
+              <img src="card-feature-4.png" class="mockup-img" alt="Bulk">
+              <img src="card-feature-5.png" class="mockup-img" alt="Management">
+            </div>
+          </div>
+
+          <div class="side-group">
+            <div class="point-box" data-index="3">
+              <h3>Fully Custom Links</h3>
+              <p>Create short links that put your brand front-and-center with quick attaching tools.</p>
+            </div>
+            <div class="point-box" data-index="4">
+              <h3>Bulk Short URLs</h3>
+              <p>Shorten several links in a single go using our platform or powerful API.</p>
+            </div>
+            <div class="point-box" data-index="5">
+              <h3>Link Management</h3>
+              <p>Manage thousands of links with intuitive features from a convenient dashboard.</p>
+            </div>
+          </div>
+
         </div>
       </div>
+    </section>
 
-      <div class="center-graphic-col">
-        <div class="mockup-container">
-          <img src="card-feature-0.png" class="mockup-img active" alt="Analytics">
-          <img src="card-feature-1.png" class="mockup-img" alt="Charts">
-          <img src="card-feature-2.png" class="mockup-img" alt="Branding">
-          <img src="card-feature-3.png" class="mockup-img" alt="Custom">
-          <img src="card-feature-4.png" class="mockup-img" alt="Bulk">
-          <img src="card-feature-5.png" class="mockup-img" alt="Management">
-        </div>
-      </div>
-
-      <div class="side-group">
-        <div class="point-box" data-index="3">
-          <h3>Fully Custom Links</h3>
-          <p>Create short links that put your brand front-and-center with quick attaching tools.</p>
-        </div>
-        <div class="point-box" data-index="4">
-          <h3>Bulk Short URLs</h3>
-          <p>Shorten several links in a single go using our platform or powerful API.</p>
-        </div>
-        <div class="point-box" data-index="5">
-          <h3>Link Management</h3>
-          <p>Manage thousands of links with intuitive features from a convenient dashboard.</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-<section class="final-stats-video-split">
+    <section class="final-stats-video-split">
       <div class="stats-full-flex">
         
         <div class="stats-left-box">
@@ -292,7 +287,6 @@
             <p>TinyURL has created billions of short links for marketers, influencers, small business owners, and large businesses.</p>
             
             <div class="stats-data-list">
-              
               <div class="stat-row">
                 <div class="stat-number">Billions</div>
                 <div class="stat-text">of redirects per month</div>
@@ -307,7 +301,6 @@
                 <div class="stat-number" id="live-tiny-counter">30,606,131,800</div>
                 <div class="stat-text">TinyURLs created</div>
               </div>
-
             </div>
           </div>
         </div>
@@ -321,161 +314,156 @@
       </div>
     </section>
 
-  </body>
-</html>
-         
-<section class="faq-section">
-  <div class="faq-container">
-    <div class="faq-left">
-      <h2>Frequently Asked Questions</h2>
-    </div>
+    <section class="faq-section">
+      <div class="faq-container">
+        <div class="faq-left">
+          <h2>Frequently Asked Questions</h2>
+        </div>
 
-    <div class="faq-right">
-      <div class="faq-item">
-        <button class="faq-question">
-          What is a URL Shortener?
-          <i class="fa-solid fa-chevron-down"></i>
-        </button>
-        <div class="faq-answer">
-          <p>A URL shortener, also known as a link shortener, is a useful tool that trims long and intricate URLs into shorter and more understandable links.</p>
+        <div class="faq-right">
+          <div class="faq-item">
+            <button class="faq-question">
+              What is a URL Shortener?
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>A URL shortener, also known as a link shortener, is a useful tool that trims long and intricate URLs into shorter and more understandable links.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              How Does a URL Shortener Work?
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>It creates a redirect from the short link to your long URL destination instantly.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              What Are the Benefits of Using a Short URL?
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Short URLs are easier to share, look cleaner in social media posts, and can be tracked for analytics.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              What is a Custom URL Shortener?
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>A custom shortener allows you to use your own branded domain (like yourbrand.co) instead of tinyurl.com.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              How Do I Shorten a URL for Free?
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Simply paste your long link into the input box at the top of our page and click "Shorten Link".</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              How Do I Know Your Service Is Reliable and Scalable?
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>TinyURL has been operating since 2002, handling billions of redirects with 99.9% uptime.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              Can I Edit My Short Links?
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Yes, with our premium plans, you can manage, track, and edit your destination URLs at any time.</p>
+            </div>
+          </div>
         </div>
       </div>
+    </section>
 
-      <div class="faq-item">
-        <button class="faq-question">
-          How Does a URL Shortener Work?
-          <i class="fa-solid fa-chevron-down"></i>
-        </button>
-        <div class="faq-answer">
-          <p>It creates a redirect from the short link to your long URL destination instantly.</p>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          What Are the Benefits of Using a Short URL?
-          <i class="fa-solid fa-chevron-down"></i>
-        </button>
-        <div class="faq-answer">
-          <p>Short URLs are easier to share, look cleaner in social media posts, and can be tracked for analytics.</p>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          What is a Custom URL Shortener?
-          <i class="fa-solid fa-chevron-down"></i>
-        </button>
-        <div class="faq-answer">
-          <p>A custom shortener allows you to use your own branded domain (like yourbrand.co) instead of tinyurl.com.</p>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          How Do I Shorten a URL for Free?
-          <i class="fa-solid fa-chevron-down"></i>
-        </button>
-        <div class="faq-answer">
-          <p>Simply paste your long link into the input box at the top of our page and click "Shorten Link".</p>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          How Do I Know Your Service Is Reliable and Scalable?
-          <i class="fa-solid fa-chevron-down"></i>
-        </button>
-        <div class="faq-answer">
-          <p>TinyURL has been operating since 2002, handling billions of redirects with 99.9% uptime.</p>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          Can I Edit My Short Links?
-          <i class="fa-solid fa-chevron-down"></i>
-        </button>
-        <div class="faq-answer">
-          <p>Yes, with our premium plans, you can manage, track, and edit your destination URLs at any time.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="ready-links-cta">
-    <div class="cta-inner-container">
+    <section class="ready-links-cta">
+      <div class="cta-inner-container">
         <h2>Ready for Shorter, Smarter Links?</h2>
         <p>Transform a long link into a short, trackable one using our platform. Create a free account or subscribe to a paid plan today!</p>
         
         <div class="cta-button-group">
-            <a href="#" class="btn-plans">View Plans</a>
-            <a href="#" class="btn-account">Create Free Account</a>
+          <a href="#" class="btn-plans">View Plans</a>
+          <a href="#" class="btn-account">Create Free Account</a>
         </div>
-    </div>
-</section>
+      </div>
+    </section>
 
-
-   <footer class="main-footer">
-    <div class="footer-container">
+    <footer class="main-footer">
+      <div class="footer-container">
         <div class="footer-col">
-            <h3>Features</h3>
-            <ul>
-                <li><a href="#">Link Editor</a></li>
-                <li><a href="#">Link Management</a></li>
-                <li><a href="#">Branded Links</a></li>
-                <li><a href="#">Short URL Tracking</a></li>
-                <li><a href="#">QR Code Generator</a></li>
-                <li><a href="#">Short URL API</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-col">
-            <h3>Resources</h3>
-            <ul>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">For Developers</a></li>
-                <li><a href="#">Our Proven Process</a></li>
-                <li><a href="#">About Us</a></li>
-            </ul>
+          <h3>Features</h3>
+          <ul>
+            <li><a href="#">Link Editor</a></li>
+            <li><a href="#">Link Management</a></li>
+            <li><a href="#">Branded Links</a></li>
+            <li><a href="#">Short URL Tracking</a></li>
+            <li><a href="#">QR Code Generator</a></li>
+            <li><a href="#">Short URL API</a></li>
+          </ul>
         </div>
 
         <div class="footer-col">
-            <h3>Contact Us</h3>
-            <ul>
-                <li><a href="#">Help Desk</a></li>
-                <li><a href="#">Contact Sales</a></li>
-                <li><a href="#">Contact Support</a></li>
-                <li><a href="#">Report Abuse</a></li>
-            </ul>
+          <h3>Resources</h3>
+          <ul>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">For Developers</a></li>
+            <li><a href="#">Our Proven Process</a></li>
+            <li><a href="#">About Us</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Contact Us</h3>
+          <ul>
+            <li><a href="#">Help Desk</a></li>
+            <li><a href="#">Contact Sales</a></li>
+            <li><a href="#">Contact Support</a></li>
+            <li><a href="#">Report Abuse</a></li>
+          </ul>
         </div>
 
         <div class="footer-col right-align">
-            <div class="legal-section">
-                <h3>Legal</h3>
-                <ul>
-                    <li><a href="#">Terms of Service</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Cookie Policy</a></li>
-                    <li><a href="#">Accessibility Statement</a></li>
-                    <li><a href="#">Privacy Manager</a></li>
-                </ul>
+          <div class="legal-section">
+            <h3>Legal</h3>
+            <ul>
+              <li><a href="#">Terms of Service</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Cookie Policy</a></li>
+              <li><a href="#">Accessibility Statement</a></li>
+              <li><a href="#">Privacy Manager</a></li>
+            </ul>
+          </div>
+          
+          <div class="brand-info">
+            <div class="social-icons">
+              <a href="#"><i class="fa-brands fa-facebook"></i></a>
+              <a href="#"><i class="fa-brands fa-instagram"></i></a>
+              <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+              <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
             </div>
-            
-            <div class="brand-info">
-                <div class="social-icons">
-                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
-                </div>
-                <h2 class="footer-logo">TINYURL</h2>
-                <p>&copy; 2026 TinyURL LLC<br>All Rights Reserved</p>
-            </div>
+            <h2 class="footer-logo">TINYURL</h2>
+            <p>&copy; 2026 TinyURL LLC<br>All Rights Reserved</p>
+          </div>
         </div>
-    </div>
-</footer>
-
-</body>
+      </div>
+    </footer>
+  </body>
 </html>
