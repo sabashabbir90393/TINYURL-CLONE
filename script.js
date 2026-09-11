@@ -1,4 +1,4 @@
-// script.js file ka content:
+// script.js file ka complete content:
 
 document.addEventListener("DOMContentLoaded", function() {
     const featureBoxes = document.querySelectorAll('.point-box');
@@ -45,10 +45,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Pehli baar rotation shuru karne ke liye
     startRotation();
-
-
 });
-
 
 
 function initLiveTinyCounter() {
@@ -71,7 +68,6 @@ function initLiveTinyCounter() {
 document.addEventListener('DOMContentLoaded', initLiveTinyCounter);
 
 
-
 document.querySelectorAll('.faq-question').forEach(button => {
     button.addEventListener('click', () => {
         const faqItem = button.parentElement;
@@ -86,6 +82,7 @@ document.querySelectorAll('.faq-question').forEach(button => {
     });
 });
 
+
 // Railway Backend API Integration
 const shortenBtn = document.getElementById('shorten-btn');
 const longUrlInput = document.getElementById('long-url-input');
@@ -97,14 +94,15 @@ if (shortenBtn) {
     shortenBtn.addEventListener('click', async (e) => {
         e.preventDefault();
         
-        let originalUrl = longUrlInput.value.trim();
+        // Trim whitespace aur starting/ending quotes (") remove karein
+        let originalUrl = longUrlInput.value.trim().replace(/^"|"$/g, '');
 
         if (!originalUrl) {
             alert("Pehle URL paste karein!");
             return;
         }
 
-        // Auto-fix missing http/https in user input
+        // Auto-fix missing http/https
         if (!originalUrl.startsWith('http://') && !originalUrl.startsWith('https://')) {
             originalUrl = 'https://' + originalUrl;
         }
@@ -117,16 +115,18 @@ if (shortenBtn) {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ longUrl: originalUrl }) // Key match: longUrl
+                body: JSON.stringify({ longUrl: originalUrl })
             });
 
             const data = await response.json();
 
             if (response.ok && data.ok) {
-                // Display generated Short Link directly from Backend
+                // Short link display
                 resultBox.innerHTML = `Short Link: <a href="${data.shortURL}" target="_blank" style="color: #007bff; text-decoration: underline;">${data.shortURL}</a>`;
             } else {
-                resultBox.innerText = data.err || "Link shorten nahi ho saka!";
+                // Proper error message formatting ([object Object] fix)
+                const errorMsg = (data.err && typeof data.err === 'object') ? (data.err.message || "Invalid URL format") : (data.err || "Link shorten nahi ho saka!");
+                resultBox.innerText = errorMsg;
             }
         } catch (err) {
             console.error(err);
@@ -134,7 +134,6 @@ if (shortenBtn) {
         }
     });
 }
-
 
 
 
