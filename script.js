@@ -85,13 +85,72 @@ document.querySelectorAll('.faq-question').forEach(button => {
         faqItem.classList.toggle('active');
     });
 });
+
 // Railway Backend API Integration
 const shortenBtn = document.getElementById('shorten-btn');
 const longUrlInput = document.getElementById('long-url-input');
 const resultBox = document.getElementById('result-box');
 
+const RAILWAY_URL = "https://tinybackend-production-fe37.up.railway.app"; 
+
+if (shortenBtn) {
+    shortenBtn.addEventListener('click', async (e) => {
+        e.preventDefault();
+        
+        let originalUrl = longUrlInput.value.trim();
+
+        if (!originalUrl) {
+            alert("Pehle URL paste karein!");
+            return;
+        }
+
+        // Auto-fix missing http/https in user input
+        if (!originalUrl.startsWith('http://') && !originalUrl.startsWith('https://')) {
+            originalUrl = 'https://' + originalUrl;
+        }
+
+        resultBox.innerText = "Shortening link...";
+
+        try {
+            const response = await fetch(`${RAILWAY_URL}/save`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ longUrl: originalUrl }) // Key match: longUrl
+            });
+
+            const data = await response.json();
+
+            if (response.ok && data.ok) {
+                // Display generated Short Link directly from Backend
+                resultBox.innerHTML = `Short Link: <a href="${data.shortURL}" target="_blank" style="color: #007bff; text-decoration: underline;">${data.shortURL}</a>`;
+            } else {
+                resultBox.innerText = data.err || "Link shorten nahi ho saka!";
+            }
+        } catch (err) {
+            console.error(err);
+            resultBox.innerText = "Backend se connection fail ho gaya!";
+        }
+    });
+}
+
+
+
+
+
+
+
+
+
+
+/* // Railway Backend API Integration
+const shortenBtn = document.getElementById('shorten-btn');
+const longUrlInput = document.getElementById('long-url-input');
+const resultBox = document.getElementById('result-box');
+
 // Yahan Apna Railway Domain Paste Karein
-const RAILWAY_URL = "tinybackend-production-fe37.up.railway.app"; 
+const RAILWAY_URL = "https://tinybackend-production-fe37.up.railway.app"; 
 
 if (shortenBtn) {
     shortenBtn.addEventListener('click', async (e) => {
@@ -107,7 +166,7 @@ if (shortenBtn) {
         resultBox.innerText = "Shortening link...";
 
         try {
-            const response = await fetch(`${RAILWAY_URL}/urls`, { // Apne backend route ke hisab se path set karein (/urls ya /short)
+            const response = await fetch(`${RAILWAY_URL}/save`, { // Apne backend route ke hisab se path set karein (/urls ya /short)
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -129,4 +188,4 @@ if (shortenBtn) {
             resultBox.innerText = "Backend se connection fail ho gaya!";
         }
     });
-}
+} */
