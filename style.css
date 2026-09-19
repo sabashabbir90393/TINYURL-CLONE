@@ -1563,3 +1563,394 @@ Stats Row Layout */
     font-weight: 900;
     margin-bottom: 5px;
 }
+
+/* css for login signup */
+/* ==================== AUTH PAGES ==================== */
+
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  background: #002342;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 440px;
+  background: #ffffff;
+  color: #172b4d;
+  padding: 45px 40px;
+  border-radius: 18px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+}
+
+.auth-logo {
+  text-align: center;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #054563;
+  margin-bottom: 28px;
+}
+
+.auth-card h1 {
+  text-align: center;
+  font-size: 30px;
+  margin: 0 0 10px;
+  color: #172b4d;
+}
+
+.auth-subtitle {
+  text-align: center;
+  color: #667085;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0 0 30px;
+}
+
+.auth-field {
+  margin-bottom: 20px;
+}
+
+.auth-field label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #344054;
+  margin-bottom: 8px;
+}
+
+.auth-field input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px 14px;
+  border: 1px solid #d0d5dd;
+  border-radius: 9px;
+  outline: none;
+  font-size: 15px;
+  font-family: "Inter", sans-serif;
+  color: #172b4d;
+  background: #fff;
+  transition: 0.2s ease;
+}
+
+.auth-field input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.auth-field input::placeholder {
+  color: #98a2b3;
+}
+
+.auth-button {
+  width: 100%;
+  border: none;
+  padding: 14px;
+  border-radius: 9px;
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: "Inter", sans-serif;
+  cursor: pointer;
+  transition: 0.2s ease;
+  margin-top: 5px;
+}
+
+.auth-button:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+.auth-message {
+  min-height: 20px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 15px 0 0;
+}
+
+.auth-message.error {
+  color: #dc2626;
+}
+
+.auth-message.success {
+  color: #16a34a;
+}
+
+.auth-switch {
+  text-align: center;
+  font-size: 14px;
+  color: #667085;
+  margin: 25px 0 18px;
+}
+
+.auth-switch a {
+  color: #2563eb;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.auth-switch a:hover {
+  text-decoration: underline;
+}
+
+.back-home {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  color: #667085;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.back-home:hover {
+  color: #2563eb;
+}
+
+
+/* ==================== MOBILE ==================== */
+
+@media (max-width: 600px) {
+  .auth-container {
+    padding: 25px 15px;
+  }
+
+  .auth-card {
+    padding: 35px 25px;
+  }
+
+  .auth-card h1 {
+    font-size: 26px;
+  }
+}
+
+/* new code by saba */
+/* ==================== TINYURL LANDING PAGE ==================== */
+
+.landing-page {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  font-family: "Inter", sans-serif;
+  background: #002342;
+}
+.landing-background {
+  position: absolute;
+  inset: 0;
+  background-image: url("feature-1.webp");
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: background-image 0.8s ease-in-out;
+  transform: none;
+}
+
+.landing-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 25, 48, 0.94) 0%,
+      rgba(0, 35, 66, 0.78) 48%,
+      rgba(0, 35, 66, 0.40) 100%
+    );
+}
+
+.landing-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 82px;
+  box-sizing: border-box;
+  padding: 0 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+.landing-logo {
+  color: #ffffff;
+  font-size: 27px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.landing-auth-buttons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.landing-login-btn,
+.landing-signup-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 85px;
+  padding: 11px 20px;
+  border-radius: 7px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.25s ease;
+  box-sizing: border-box;
+}
+
+.landing-login-btn {
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.landing-login-btn:hover {
+  background: #ffffff;
+  color: #054563;
+}
+
+.landing-signup-btn {
+  color: #ffffff;
+  background: #2563eb;
+  border: 1px solid #2563eb;
+}
+
+.landing-signup-btn:hover {
+  background: #1d4ed8;
+  border-color: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+.landing-hero {
+  position: relative;
+  z-index: 5;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.landing-content {
+  margin-left: 60px;
+  margin-top: 30px;
+  max-width: 690px;
+}
+
+.landing-label {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: #93c5fd;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.landing-content h1 {
+  margin: 0 0 22px;
+  color: #ffffff;
+  font-size: 58px;
+  line-height: 1.08;
+  font-weight: 700;
+  letter-spacing: -1.5px;
+}
+
+.landing-content > p {
+  max-width: 600px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 19px;
+  line-height: 1.7;
+}
+
+.landing-divider {
+  width: 70px;
+  height: 4px;
+  margin-top: 30px;
+  border-radius: 10px;
+  background: #2563eb;
+}
+
+.landing-slide-number {
+  margin-top: 25px;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.slide-total {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+
+/* ==================== MOBILE ==================== */
+
+@media (max-width: 700px) {
+
+  .landing-header {
+    height: 70px;
+    padding: 0 20px;
+  }
+
+  .landing-logo {
+    font-size: 22px;
+  }
+
+  .landing-auth-buttons {
+    gap: 7px;
+  }
+
+  .landing-login-btn,
+  .landing-signup-btn {
+    min-width: auto;
+    padding: 9px 13px;
+    font-size: 12px;
+  }
+
+  .landing-content {
+    margin-left: 22px;
+    margin-right: 22px;
+    margin-top: 30px;
+  }
+
+  .landing-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+  }
+
+  .landing-content h1 {
+    font-size: 40px;
+    letter-spacing: -0.8px;
+  }
+
+  .landing-content > p {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+}
+/* ==================== LOGOUT BUTTON ==================== */
+
+.logout-button {
+  width: 100%;
+  margin-top: 15px;
+  padding: 12px 20px;
+  border: 1px solid #dc2626;
+  border-radius: 7px;
+  background: transparent;
+  color: #dc2626;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.logout-button:hover {
+  background: #dc2626;
+  color: #ffffff;
+}

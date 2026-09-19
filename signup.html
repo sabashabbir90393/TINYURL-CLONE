@@ -1,0 +1,75 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - TinyURL Clone</title>  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  />  <link rel="stylesheet" href="style.css">
+</head><body>  <div class="auth-container"><div class="auth-card">
+
+  <div class="auth-logo">TINYURL</div>
+
+  <h1>Create your account</h1>
+
+  <p class="auth-subtitle">
+    Create a free account to manage your shortened links.
+  </p>
+
+  <form id="signup-form">
+
+    <div class="auth-field">
+      <label for="name">Name</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        placeholder="Enter your name"
+        required
+      >
+    </div>
+
+  
+
+    <div class="auth-field">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="Enter your password"
+        required
+      >
+    </div>
+
+    <button type="submit" class="auth-button">
+      Sign Up
+    </button>
+
+    <p id="signup-message" class="auth-message"></p>
+
+  </form>
+
+  <p class="auth-switch">
+    Already have an account?
+    <a href="login.html">Log In</a>
+  </p>
+
+  <a href="index.html" class="back-home">
+    <button type="button" class="logout-button" onclick="logoutUser()">
+  Logout
+</button>
+    <i class="fa-solid fa-arrow-left"></i>
+   
+    Back to Home
+  </a>
+
+</div>
+
+  </div>
+  <script src="auth.js" defer></script>
+</body>
+</html>
