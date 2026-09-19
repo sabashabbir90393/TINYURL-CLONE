@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5050";
+const API_URL = "https://tinybackend-production-fe37.up.railway.app";
 
 const currentPage = window.location.pathname.split("/").pop() || "index.html";
 
@@ -44,7 +44,7 @@ if (signupForm) {
       message.classList.add("success");
 
       setTimeout(() => {
-        window.location.href = "index.html";
+        window.location.href = "/index.html";
       }, 800);
 
     } catch (error) {
@@ -103,7 +103,7 @@ if (loginForm) {
       message.classList.add("success");
 
       setTimeout(() => {
-        window.location.href = "index.html";
+        window.location.href = "/index.html";
       }, 500);
 
     } catch (error) {
@@ -144,7 +144,7 @@ async function verifyUserToken() {
 
   } catch (error) {
     console.error("Token verification error:", error);
-    return true;
+    return false;
   }
 }
 
@@ -153,7 +153,7 @@ async function verifyUserToken() {
 
 async function checkPageAccess() {
 
-  // Landing, Login and Signup are public pages
+  // Landing, Login and Signup are public
   if (
     currentPage === "landing.html" ||
     currentPage === "login.html" ||
@@ -162,25 +162,27 @@ async function checkPageAccess() {
     return;
   }
 
-  // Any other page, including index.html, requires login
+  // Clone requires login
   if (!token) {
-    window.location.href = "landing.html";
+    window.location.href = "/landing.html";
     return;
   }
 
   const validToken = await verifyUserToken();
 
   if (!validToken) {
-    window.location.href = "landing.html";
+    window.location.href = "/landing.html";
   }
 }
 
 checkPageAccess();
+
+
 // ==================== LOGOUT ====================
 
 function logoutUser() {
   localStorage.removeItem("tinyurl_token");
   localStorage.removeItem("tinyurl_username");
 
-  window.location.href = "landing.html";
+  window.location.href = "/landing.html";
 }
