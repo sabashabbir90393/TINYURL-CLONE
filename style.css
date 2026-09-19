@@ -1954,3 +1954,30 @@ Stats Row Layout */
   background: #dc2626;
   color: #ffffff;
 }
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 48px;
+  box-sizing: border-box;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  color: #64748b;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 5px;
+}
+
+.password-toggle:hover {
+  color: #2563eb;
+}
