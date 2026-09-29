@@ -65,10 +65,14 @@
 
         <div class="recent-links-section">
           <h3>Your Recent Links:</h3>
-          <div class="recent-links-box">
+          <!-- <div class="recent-links-box">
             <i class="fa-solid fa-circle-exclamation"></i>
             <span>No links yet in your history</span>
-          </div>
+          </div> -->
+          <div class="recent-links-box" id="recent-links-box">
+  <i class="fa-solid fa-circle-exclamation"></i>
+  <span>No links yet in your history</span>
+</div>
         </div>
       </div>
 
@@ -124,11 +128,35 @@
                 <small>Must be at least 5 characters</small>
               </div>
             </div>
-
             <button class="btn" id="shorten-btn">Shorten Link</button>
 
-            <!-- Shortened URL Result Container -->
-            <div id="result-box" style="margin-top: 15px; text-align: center; font-weight: bold; color: #007bff; word-break: break-all;"></div>
+<!-- Shortened URL Result -->
+<div
+  id="result-box"
+  style="
+    margin-top: 15px;
+    text-align: center;
+    font-weight: bold;
+    color: #007bff;
+    word-break: break-all;
+  "
+></div>
+
+<!-- Copy Button -->
+<button
+  class="btn"
+  id="copy-link-btn"
+  style="display: none; margin-top: 10px;"
+>
+  <i class="fa-regular fa-copy"></i>
+  Copy Link
+</button>
+
+         <!--    <button class="btn" id="shorten-btn">Shorten Link</button>
+
+            Shortened URL Result Container -->
+           <!--  <div id="result-box" style="margin-top: 15px; text-align: center; font-weight: bold; color: #007bff; word-break: break-all;"></div> -->
+ 
 
             <p class="footer">
               By clicking <strong>Shorten Link</strong>, you agree with our
