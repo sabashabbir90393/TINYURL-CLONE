@@ -1,9 +1,0 @@
-[build]
-  publish = "."
-
-[[redirects]]
-  from = "/"
-  to = "/landing.html"
-  status = 200
-  force = true
-  
