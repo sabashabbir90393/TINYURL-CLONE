@@ -1,51 +1,62 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const featureBoxes = document.querySelectorAll('.point-box');
-    const featureImages = document.querySelectorAll('.mockup-img');
+document.addEventListener("DOMContentLoaded", function () {
+    const featureBoxes = document.querySelectorAll(".point-box");
+    const featureImages = document.querySelectorAll(".mockup-img");
+
     let currentIdx = 0;
     let autoPlay;
 
-    // Function jo image aur highlight ko update karega
+    // ==================== FEATURE ROTATION ====================
+
     function updateDisplay(index) {
-        featureBoxes.forEach(box => box.classList.remove('active-feature'));
-        featureImages.forEach(img => img.classList.remove('active'));
+        featureBoxes.forEach((box) => {
+            box.classList.remove("active-feature");
+        });
+
+        featureImages.forEach((img) => {
+            img.classList.remove("active");
+        });
 
         if (featureBoxes[index]) {
-            featureBoxes[index].classList.add('active-feature');
+            featureBoxes[index].classList.add("active-feature");
         }
 
         if (featureImages[index]) {
-            featureImages[index].classList.add('active');
+            featureImages[index].classList.add("active");
         }
 
         currentIdx = index;
     }
 
-    // Automatic rotation - 3 seconds
     function startRotation() {
+        clearInterval(autoPlay);
+
         autoPlay = setInterval(() => {
             let next = (currentIdx + 1) % featureBoxes.length;
             updateDisplay(next);
         }, 3000);
     }
 
-    // Mouse hover effect
     featureBoxes.forEach((box, i) => {
-        box.addEventListener('mouseenter', () => {
+        box.addEventListener("mouseenter", () => {
             clearInterval(autoPlay);
             updateDisplay(i);
         });
 
-        box.addEventListener('mouseleave', () => {
+        box.addEventListener("mouseleave", () => {
             startRotation();
         });
     });
 
-    startRotation();
+    if (featureBoxes.length > 0) {
+        startRotation();
+    }
 });
 
 
+// ==================== LIVE TINY COUNTER ====================
+
 function initLiveTinyCounter() {
-    const counterEl = document.getElementById('live-tiny-counter');
+    const counterEl = document.getElementById("live-tiny-counter");
 
     if (!counterEl) return;
 
@@ -53,42 +64,43 @@ function initLiveTinyCounter() {
 
     setInterval(() => {
         let increment = Math.floor(Math.random() * 7) + 2;
+
         baseCount += increment;
 
         counterEl.innerText = baseCount.toLocaleString();
     }, 800);
 }
 
-
-// Start counter once page loads
-document.addEventListener('DOMContentLoaded', initLiveTinyCounter);
+document.addEventListener(
+    "DOMContentLoaded",
+    initLiveTinyCounter
+);
 
 
 // ==================== FAQ ====================
 
-document.querySelectorAll('.faq-question').forEach(button => {
-    button.addEventListener('click', () => {
+document.querySelectorAll(".faq-question").forEach((button) => {
+    button.addEventListener("click", () => {
         const faqItem = button.parentElement;
 
-        document.querySelectorAll('.faq-item').forEach(item => {
+        document.querySelectorAll(".faq-item").forEach((item) => {
             if (item !== faqItem) {
-                item.classList.remove('active');
+                item.classList.remove("active");
             }
         });
 
-        faqItem.classList.toggle('active');
+        faqItem.classList.toggle("active");
     });
 });
 
 
 // ==================== BACKEND + URL SHORTENER ====================
 
-const shortenBtn = document.getElementById('shorten-btn');
-const longUrlInput = document.getElementById('long-url-input');
-const resultBox = document.getElementById('result-box');
-const copyLinkBtn = document.getElementById('copy-link-btn');
-const recentLinksBox = document.getElementById('recent-links-box');
-
+const shortenBtn = document.getElementById("shorten-btn");
+const longUrlInput = document.getElementById("long-url-input");
+const resultBox = document.getElementById("result-box");
+const copyLinkBtn = document.getElementById("copy-link-btn");
+const recentLinksBox = document.getElementById("recent-links-box");
 
 // Your deployed Vercel backend
 const BACKEND_URL = "https://tiny-backend-pink.vercel.app";
@@ -97,14 +109,21 @@ const BACKEND_URL = "https://tiny-backend-pink.vercel.app";
 // ==================== RECENT LINKS ====================
 
 function getRecentLinks() {
-    return JSON.parse(
-        localStorage.getItem('tinyurl_recent_links')
-    ) || [];
+    try {
+        return JSON.parse(
+            localStorage.getItem("tinyurl_recent_links")
+        ) || [];
+    } catch (error) {
+        return [];
+    }
 }
 
 
 function saveRecentLink(shortURL) {
     let links = getRecentLinks();
+
+    // Same link duplicate na ho
+    links = links.filter((link) => link !== shortURL);
 
     // Newest link sab se upar
     links.unshift(shortURL);
@@ -113,30 +132,35 @@ function saveRecentLink(shortURL) {
     links = links.slice(0, 5);
 
     localStorage.setItem(
-        'tinyurl_recent_links',
+        "tinyurl_recent_links",
         JSON.stringify(links)
     );
 
     displayRecentLinks();
 }
 
+
 function displayRecentLinks() {
-    if (!recentLinksBox) return;
+    const box = document.getElementById("recent-links-box");
+
+    if (!box) {
+        return;
+    }
 
     const links = getRecentLinks();
 
     // Agar koi link nahi hai
     if (links.length === 0) {
-        recentLinksBox.innerHTML = `
+        box.innerHTML = `
             <i class="fa-solid fa-circle-exclamation"></i>
             <span>No links yet in your history</span>
         `;
 
         return;
-    
+    }
 
-    // Recent links display
-    recentLinksBox.innerHTML = links.map((link) => `
+    // Recent shortened links
+    box.innerHTML = links.map((link) => `
         <div style="
             width: 100%;
             padding: 8px 0;
@@ -155,47 +179,13 @@ function displayRecentLinks() {
                 ${link}
             </a>
         </div>
-    `).join('');
-}
-
-   
-
-    // Recent links ke Copy buttons
-    document.querySelectorAll('.recent-copy-btn').forEach(button => {
-
-        button.addEventListener('click', async () => {
-
-            const link = button.getAttribute('data-link');
-
-            try {
-
-                await navigator.clipboard.writeText(link);
-
-                const originalText = button.innerHTML;
-
-                button.innerHTML = `
-                    <i class="fa-solid fa-check"></i>
-                    Copied
-                `;
-
-                setTimeout(() => {
-                    button.innerHTML = originalText;
-                }, 1500);
-
-            } catch (error) {
-
-                console.error("Copy Error:", error);
-
-                alert("Link is not  copy !");
-            }
-        });
-    });
+    `).join("");
 }
 
 
 // Page load par recent links show karein
 document.addEventListener(
-    'DOMContentLoaded',
+    "DOMContentLoaded",
     displayRecentLinks
 );
 
@@ -204,16 +194,14 @@ document.addEventListener(
 
 if (shortenBtn) {
 
-    shortenBtn.addEventListener('click', async (e) => {
+    shortenBtn.addEventListener("click", async (e) => {
 
         e.preventDefault();
-
 
         // URL input
         let originalUrl = longUrlInput.value
             .trim()
-            .replace(/^"|"$/g, '');
-
+            .replace(/^"|"$/g, "");
 
         // Empty URL
         if (!originalUrl) {
@@ -223,25 +211,21 @@ if (shortenBtn) {
             return;
         }
 
-
         // http/https automatically add
         if (
-            !originalUrl.startsWith('http://') &&
-            !originalUrl.startsWith('https://')
+            !originalUrl.startsWith("http://") &&
+            !originalUrl.startsWith("https://")
         ) {
-            originalUrl = 'https://' + originalUrl;
+            originalUrl = "https://" + originalUrl;
         }
-
 
         // Loading message
         resultBox.innerText = "Shortening link...";
-
 
         // Copy button hide
         if (copyLinkBtn) {
             copyLinkBtn.style.display = "none";
         }
-
 
         try {
 
@@ -249,10 +233,10 @@ if (shortenBtn) {
             const response = await fetch(
                 `${BACKEND_URL}/save`,
                 {
-                    method: 'POST',
+                    method: "POST",
 
                     headers: {
-                        'Content-Type': 'application/json'
+                        "Content-Type": "application/json"
                     },
 
                     body: JSON.stringify({
@@ -300,7 +284,9 @@ if (shortenBtn) {
 
                         try {
 
-                            await navigator.clipboard.writeText(shortURL);
+                            await navigator.clipboard.writeText(
+                                shortURL
+                            );
 
 
                             copyLinkBtn.innerHTML = `
@@ -327,7 +313,7 @@ if (shortenBtn) {
                             );
 
                             alert(
-                                "link is not copy!"
+                                "Link copy nahi ho saka!"
                             );
                         }
                     };
@@ -348,7 +334,7 @@ if (shortenBtn) {
                 const errorMsg =
                     (
                         data.err &&
-                        typeof data.err === 'object'
+                        typeof data.err === "object"
                     )
                         ? (
                             data.err.message ||
@@ -366,10 +352,13 @@ if (shortenBtn) {
 
         } catch (err) {
 
-            console.error(err);
+            console.error(
+                "Backend Error:",
+                err
+            );
 
             resultBox.innerText =
-                "backened connection failed!";
+                "Backend connection failed!";
         }
     });
 }
