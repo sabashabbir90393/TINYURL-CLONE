@@ -117,9 +117,18 @@ function getRecentLinks() {
         return [];
     }
 }
-
-
 function saveRecentLink(shortURL) {
+    const links = [shortURL];
+
+    localStorage.setItem(
+        "tinyurl_recent_links",
+        JSON.stringify(links)
+    );
+
+    displayRecentLinks();
+}
+
+/* function saveRecentLink(shortURL) {
     let links = getRecentLinks();
 
     // Same link duplicate na ho
@@ -136,8 +145,8 @@ function saveRecentLink(shortURL) {
         JSON.stringify(links)
     );
 
-    displayRecentLinks();
-}
+    displayRecentLinks(); */
+/* } */
 
 
 function displayRecentLinks() {
