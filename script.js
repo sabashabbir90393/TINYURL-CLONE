@@ -120,7 +120,6 @@ function saveRecentLink(shortURL) {
     displayRecentLinks();
 }
 
-
 function displayRecentLinks() {
     if (!recentLinksBox) return;
 
@@ -134,21 +133,15 @@ function displayRecentLinks() {
         `;
 
         return;
-    }
-
+    
 
     // Recent links display
     recentLinksBox.innerHTML = links.map((link) => `
         <div style="
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
             width: 100%;
             padding: 8px 0;
             border-bottom: 1px solid #eee;
         ">
-
             <a
                 href="${link}"
                 target="_blank"
@@ -161,27 +154,11 @@ function displayRecentLinks() {
             >
                 ${link}
             </a>
-
-            <button
-                class="recent-copy-btn"
-                data-link="${link}"
-                style="
-                    border: none;
-                    background: #007bff;
-                    color: white;
-                    padding: 6px 10px;
-                    border-radius: 6px;
-                    cursor: pointer;
-                    white-space: nowrap;
-                "
-            >
-                <i class="fa-regular fa-copy"></i>
-                Copy
-            </button>
-
         </div>
     `).join('');
+}
 
+   
 
     // Recent links ke Copy buttons
     document.querySelectorAll('.recent-copy-btn').forEach(button => {
