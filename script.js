@@ -392,7 +392,7 @@ if (shortenBtn) {
             console.error(err);
 
             resultBox.innerText =
-                "Backend se connection fail ho gaya!";
+                "backened connection failed!";
         }
     });
 }
