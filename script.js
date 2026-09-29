@@ -186,7 +186,7 @@ function displayRecentLinks() {
 
                 console.error("Copy Error:", error);
 
-                alert("Link copy nahi ho saka!");
+                alert("Link is not  copy !");
             }
         });
     });
@@ -327,7 +327,7 @@ if (shortenBtn) {
                             );
 
                             alert(
-                                "Link copy nahi ho saka!"
+                                "link is not copy!"
                             );
                         }
                     };
